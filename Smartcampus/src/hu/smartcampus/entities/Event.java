@@ -7,7 +7,7 @@ import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Event implements Comparable<Event>, Parcelable{
+public class Event implements Comparable<Event>, Parcelable {
 
 	private int eventId;
 	private int markerType = -1;
@@ -24,12 +24,10 @@ public class Event implements Comparable<Event>, Parcelable{
 	private boolean rankable;
 	private boolean isNearby = false;
 	private boolean editable;
-		
-	public Event(int markerType, String markerRemark, String title,
-			String description, Calendar eventStart, Calendar eventEnd,
-			List<String> categories, List<String> providers,
-			List<String> locations, List<EventRankResult> rankResult,
-			int eventId, boolean provided, boolean rankable, boolean editable) {
+
+	public Event(int markerType, String markerRemark, String title, String description, Calendar eventStart, Calendar eventEnd,
+			List<String> categories, List<String> providers, List<String> locations, List<EventRankResult> rankResult, int eventId, boolean provided,
+			boolean rankable, boolean editable) {
 		super();
 		this.markerType = markerType;
 		this.markerRemark = markerRemark;
@@ -47,9 +45,8 @@ public class Event implements Comparable<Event>, Parcelable{
 		this.editable = editable;
 	}
 
-	public Event(int eventId, String title, String description, Calendar eventStart,
-			Calendar eventEnd) {
-		super(); 
+	public Event(int eventId, String title, String description, Calendar eventStart, Calendar eventEnd) {
+		super();
 		this.eventId = eventId;
 		this.title = title;
 		this.description = description;
@@ -65,7 +62,7 @@ public class Event implements Comparable<Event>, Parcelable{
 	public void setProvided(boolean provided) {
 		this.provided = provided;
 	}
-	
+
 	public boolean isNearby() {
 		return isNearby;
 	}
@@ -73,7 +70,7 @@ public class Event implements Comparable<Event>, Parcelable{
 	public void setNearby(boolean isNearby) {
 		this.isNearby = isNearby;
 	}
-	
+
 	public boolean isEditable() {
 		return editable;
 	}
@@ -81,7 +78,7 @@ public class Event implements Comparable<Event>, Parcelable{
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
-	
+
 	public boolean isRankable() {
 		return rankable;
 	}
@@ -89,19 +86,19 @@ public class Event implements Comparable<Event>, Parcelable{
 	public boolean isProvided() {
 		return provided;
 	}
-	
+
 	public int getEventId() {
 		return eventId;
 	}
-	
+
 	public String getMarkerRemark() {
 		return markerRemark;
 	}
-	
+
 	public int getMarkerType() {
 		return markerType;
 	}
-	
+
 	public void addCategory(long id, String name) {
 		categories.add(name);
 	}
@@ -109,7 +106,7 @@ public class Event implements Comparable<Event>, Parcelable{
 	public void addProvider(long id, String name) {
 		providers.add(name);
 	}
-	
+
 	public void addLocation(long id, String name) {
 		locations.add(name);
 	}
@@ -117,11 +114,11 @@ public class Event implements Comparable<Event>, Parcelable{
 	public void addRankResult(EventRankResult result) {
 		rankResult.add(result);
 	}
-	
+
 	public List<EventRankResult> getRankResult() {
 		return rankResult;
 	}
-	
+
 	public Iterable<String> getCategory() {
 		return categories;
 	}
@@ -129,11 +126,11 @@ public class Event implements Comparable<Event>, Parcelable{
 	public Iterable<String> getProvider() {
 		return providers;
 	}
-	
+
 	public Iterable<String> getLocation() {
 		return locations;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -149,7 +146,7 @@ public class Event implements Comparable<Event>, Parcelable{
 	public Calendar getEventEnd() {
 		return eventEnd;
 	}
-	
+
 	public void setMarkerType(int markerType) {
 		this.markerType = markerType;
 	}
@@ -164,12 +161,12 @@ public class Event implements Comparable<Event>, Parcelable{
 
 	@Override
 	public String toString() {
-		if(isNearby) {
+		if (isNearby) {
 			StringBuilder sb = new StringBuilder();
 			int size = locations.size();
-			for(int i = 0; i < size; ++i) {
+			for (int i = 0; i < size; ++i) {
 				sb.append(locations.get(i));
-				if(i != size - 1) {
+				if (i != size - 1) {
 					sb.append(", ");
 				}
 			}
@@ -180,13 +177,13 @@ public class Event implements Comparable<Event>, Parcelable{
 
 	@Override
 	public int compareTo(Event another) {
-		if(isNearby) {
+		if (isNearby) {
 			StringBuilder sb1 = new StringBuilder();
-			for(String s : this.locations) {
+			for (String s : this.locations) {
 				sb1.append(s);
 			}
 			StringBuilder sb2 = new StringBuilder();
-			for(String s : another.locations) {
+			for (String s : another.locations) {
 				sb2.append(s);
 			}
 			return sb1.toString().compareToIgnoreCase(sb2.toString());
@@ -200,19 +197,19 @@ public class Event implements Comparable<Event>, Parcelable{
 	}
 
 	public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
-		
+
 		@Override
 		public Event createFromParcel(Parcel source) {
 			return new Event(source);
 		}
-		
+
 		@Override
 		public Event[] newArray(int size) {
 			return new Event[size];
 		}
-		
+
 	};
-	
+
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeInt(markerType);
@@ -253,5 +250,5 @@ public class Event implements Comparable<Event>, Parcelable{
 		isNearby = (Boolean) in.readValue(null);
 		editable = (Boolean) in.readValue(null);
 	}
-	
+
 }

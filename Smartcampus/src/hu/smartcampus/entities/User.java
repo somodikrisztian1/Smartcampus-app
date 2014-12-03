@@ -2,25 +2,24 @@ package hu.smartcampus.entities;
 
 import android.graphics.Bitmap;
 
-public class User
-{
-	
+public class User {
+
 	private String sessionId;
 	private String displayName;
 	private String userName;
-	public Bitmap profilePicture; // profilkép, Bitmap-ban van, a SystemApplications osztályban van konvertálás rá
-	
-	public User()
-	{
+	public Bitmap profilePicture; // profilkép, Bitmap-ban van, a
+									// SystemApplications osztályban van
+									// konvertálás rá
+
+	public User() {
 		super();
 	}
-	
+
 	public User(String sessionId) {
 		this.sessionId = sessionId;
 	}
-	
-	public User(String sessionId, String displayName, String userName,
-			Bitmap profilePicture) {
+
+	public User(String sessionId, String displayName, String userName, Bitmap profilePicture) {
 		super();
 		this.sessionId = sessionId;
 		this.displayName = displayName;
@@ -51,7 +50,7 @@ public class User
 	public void setProfilePicture(Bitmap profilePicture) {
 		this.profilePicture = profilePicture;
 	}
-	
+
 	public String getSessionId() {
 		return sessionId;
 	}
@@ -59,5 +58,5 @@ public class User
 	public void setSessionID(String sessionId) {
 		this.sessionId = sessionId;
 	}
-	
+
 }

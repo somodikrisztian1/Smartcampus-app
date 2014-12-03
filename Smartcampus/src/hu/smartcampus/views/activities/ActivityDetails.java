@@ -7,5 +7,5 @@ import org.androidannotations.annotations.EActivity;
 
 @EActivity(R.layout.fragment_events_detail)
 public class ActivityDetails extends CustomActionBarActivity {
-	
+
 }

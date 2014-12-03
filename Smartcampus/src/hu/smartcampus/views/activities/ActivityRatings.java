@@ -9,13 +9,15 @@ import android.view.MenuItem;
 
 @EActivity(R.layout.activity_ratings)
 public class ActivityRatings extends CustomActionBarActivity {
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if(item.getItemId() == android.R.id.home) {   // TODO kipróbálni egy API level < 11 -en 
+		if (item.getItemId() == android.R.id.home) {
+			onBackPressed();
+		} else if (item.getItemId() == R.id.home) {
 			onBackPressed();
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 }

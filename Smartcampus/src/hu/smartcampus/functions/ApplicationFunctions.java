@@ -1,8 +1,7 @@
 package hu.smartcampus.functions;
 
-public class ApplicationFunctions
-{
-	
+public class ApplicationFunctions {
+
 	private static ApplicationFunctions instance;
 	private UserFunctions userFunctions;
 	private CalendarFunctions calendarFunctions;
@@ -10,12 +9,11 @@ public class ApplicationFunctions
 
 	/**
 	 * Singleton. Az alkalmazás logikai réteg belépési pontja.
+	 * 
 	 * @return példány.
 	 */
-	public static ApplicationFunctions getInstance()
-	{
-		synchronized (ApplicationFunctions.class)
-		{
+	public static ApplicationFunctions getInstance() {
+		synchronized (ApplicationFunctions.class) {
 			if (instance == null) {
 				instance = new ApplicationFunctions();
 			}
@@ -23,26 +21,22 @@ public class ApplicationFunctions
 		}
 	}
 
-	public UserFunctions getUserFunctions()
-	{
+	public UserFunctions getUserFunctions() {
 		return userFunctions;
 	}
-	
-	public CalendarFunctions getCalendarFunctions()
-	{
+
+	public CalendarFunctions getCalendarFunctions() {
 		return calendarFunctions;
 	}
-	
-	public MappingFunctions getMappingFunctions()
-	{
+
+	public MappingFunctions getMappingFunctions() {
 		return mappingFunctions;
 	}
-	
-	private ApplicationFunctions()
-	{
+
+	private ApplicationFunctions() {
 		userFunctions = new UserFunctions();
 		calendarFunctions = new CalendarFunctions();
 		mappingFunctions = new MappingFunctions();
 	}
-	
+
 }

@@ -2,11 +2,10 @@ package hu.smartcampus.functions;
 
 import hu.smartcampus.entities.User;
 
-public class UserFunctions
-{
+public class UserFunctions {
 	private User loggedInUser;
 	private boolean loginStatus = false;
-	
+
 	public boolean getLoginSatus() {
 		return loginStatus;
 	}
@@ -16,13 +15,11 @@ public class UserFunctions
 		loginStatus = true;
 	}
 
-	public User getLoggedInUser()
-	{
+	public User getLoggedInUser() {
 		return loggedInUser;
 	}
 
-	public void logout()
-	{
+	public void logout() {
 		loggedInUser = null;
 		loginStatus = false;
 	}

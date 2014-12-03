@@ -17,7 +17,7 @@ import android.graphics.Bitmap;
 public class UserDAOImpl implements UserDAO {
 
 	private LocalDatabaseOpenHelper dbHelper;
-	
+
 	public UserDAOImpl(Context context) {
 		super();
 		this.dbHelper = new LocalDatabaseOpenHelper(context);
@@ -29,19 +29,18 @@ public class UserDAOImpl implements UserDAO {
 		insertU(writeDB, user);
 		writeDB.close();
 	}
-	
+
 	@Override
 	public void deleteUserWrongSession() {
 		SQLiteDatabase writeDB = dbHelper.getWritableDatabase();
 		writeDB.delete("User", null, null);
 		writeDB.close();
 	}
-	
+
 	@Override
 	public User getUser() {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		Cursor c = db.query("User", new String[] { "*" }, null, null, null,
-				null, null);
+		Cursor c = db.query("User", new String[] { "*" }, null, null, null, null, null);
 		if (c.moveToFirst()) {
 			User user = null;
 			while (!c.isAfterLast()) {
@@ -78,5 +77,5 @@ public class UserDAOImpl implements UserDAO {
 		values.put("profilePic", SystemFunctions.bitMapToString(user.getProfilePicture()));
 		db.insert("User", null, values);
 	}
-	
+
 }

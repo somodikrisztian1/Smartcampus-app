@@ -91,7 +91,6 @@
                 android:layout_marginLeft="@dimen/welcomeMarginLeft3"
                 android:layout_marginRight="@dimen/welcomeMarginRight1"
                 android:layout_weight="1"
-                android:background="@drawable/rounded_edges"
                 android:focusable="false"
                 android:gravity="center"
                 android:hint="@string/hintDateTo"

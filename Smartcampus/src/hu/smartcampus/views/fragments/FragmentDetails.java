@@ -36,7 +36,6 @@ import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -46,14 +45,14 @@ import android.widget.TextView;
 
 @EFragment(R.layout.fragment_details)
 public class FragmentDetails extends Fragment implements OnClickListener {
-	
+
 	static boolean btnPressed = false;
 	private CustomActionBarActivity activity;
 	private Event event;
 	private MenuItem menuCalendarOne;
 	private FragmentTitles fragLargeTitles;
 	private FragmentDetails fragLargeDetails;
-	
+
 	@ViewById
 	TextView title;
 	@ViewById
@@ -79,66 +78,65 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 	@Bean
 	BackgroundOperations bg;
 	private View view;
-	
+
 	@Click
 	void btnSubscribe(View v) {
-		if(Toaster.isOnlineAndLoggedIn(activity)) {
+		if (Toaster.isOnlineAndLoggedIn(activity)) {
 			Button button = (Button) v;
-			
+
 			btnPressed = true;
-			
-			if(button.getText().equals(subscribe)) {
+
+			if (button.getText().equals(subscribe)) {
 				bg.markEvent(event.getEventId(), true, this);
-			}
-			else {
+			} else {
 				bg.markEvent(event.getEventId(), false, this);
 			}
 		}
 	}
-	
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		this.activity = (CustomActionBarActivity) activity;
 		event = activity.getIntent().getParcelableExtra("event");
-//		if(FragmentTitles.selectedEvent != null) {
-//			event = FragmentTitles.selectedEvent;
-//		}
+		// if(FragmentTitles.selectedEvent != null) {
+		// event = FragmentTitles.selectedEvent;
+		// }
 	}
 
-		@Override
-		public void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			setHasOptionsMenu(true);
-//			if(getId() == R.id.fragNormalPD || getId() == R.id.fragNormalNearby) {
-//				setRetainInstance(true);
-//			}
-		}
-		
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+		// if(getId() == R.id.fragNormalPD || getId() == R.id.fragNormalNearby)
+		// {
+		// setRetainInstance(true);
+		// }
+	}
+
 	@AfterViews
 	void afterViews() {
 		view = getView();
 		fragLargeTitles = (FragmentTitles) getFragmentManager().findFragmentById(R.id.fragLargeTitles);
 		fragLargeDetails = (FragmentDetails) getFragmentManager().findFragmentById(R.id.fragLargeDetails);
-		if(ActivityMain.fragment instanceof FragmentNearby) {
+		if (ActivityMain.fragment instanceof FragmentNearby) {
 			btnSubscribe.setVisibility(View.GONE);
 		}
 		if (fragLargeDetails == null) {
-			Log.d("lol", "detailsbackground");
 			view.setBackgroundResource(R.drawable.deik);
 		}
-		if(event != null) {
+		if (event != null) {
 			viewSetter(view);
 		}
-		if(SystemFunctions.isLargeLandscape(getActivity())) {
-			if(this.event == null) {
+		if (SystemFunctions.isLargeLandscape(getActivity())) {
+			if (this.event == null) {
 				view.setVisibility(View.INVISIBLE);
 			}
 		}
 	}
 
 	public void updateContent(Event event) {
-		if(view.getVisibility() == View.INVISIBLE) {
+		if (view.getVisibility() == View.INVISIBLE) {
 			view.setVisibility(View.VISIBLE);
 			menuCalendarOne.setVisible(true);
 		}
@@ -146,12 +144,11 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 		viewSetter(view);
 		activity.supportInvalidateOptionsMenu();
 	}
-	
+
 	private void viewSetter(View layout) {
-		if(event.getMarkerType() != -1) {
+		if (event.getMarkerType() != -1) {
 			btnSubscribe.setText(unsubscribe);
-		}
-		else {
+		} else {
 			btnSubscribe.setText(subscribe);
 		}
 		title.setText(event.getTitle());
@@ -159,9 +156,9 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 		StringBuilder sb = new StringBuilder();
 		ArrayList<String> cats = (ArrayList<String>) event.getCategory();
 		int size = cats.size();
-		for(int i = 0; i < size; ++i) {
+		for (int i = 0; i < size; ++i) {
 			sb.append(cats.get(i));
-			if(i != size - 1) {
+			if (i != size - 1) {
 				sb.append(", ");
 			}
 		}
@@ -172,9 +169,9 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 		sb.setLength(0);
 		ArrayList<String> locs = (ArrayList<String>) event.getLocation();
 		size = locs.size();
-		for(int i = 0; i < size; ++i) {
+		for (int i = 0; i < size; ++i) {
 			sb.append(locs.get(i).toString());
-			if(i != size - 1) {
+			if (i != size - 1) {
 				sb.append(", ");
 			}
 		}
@@ -182,109 +179,115 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 		sb.setLength(0);
 		ArrayList<String> provs = (ArrayList<String>) event.getProvider();
 		size = provs.size();
-		for(int i = 0; i < size; ++i) {
+		for (int i = 0; i < size; ++i) {
 			sb.append(provs.get(i).toString());
-			if(i != size - 1) {
+			if (i != size - 1) {
 				sb.append(", ");
 			}
 		}
 		editProviders.setText(sb.toString());
 	}
-	
+
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		this.activity.getSupportActionBar().setTitle(detailsTitle);  // TODO ez hamarabb lefut mint az after
+		this.activity.getSupportActionBar().setTitle(detailsTitle); // TODO ez
+																	// hamarabb
+																	// lefut
+																	// mint az
+																	// after
 	}
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		if(menu != null) {
-			if(fragLargeTitles == null) {
-				menu.clear(); // ne legyen clear ha 2 frag latszik --> find titles
+		if (menu != null) {
+			if (fragLargeTitles == null) {
+				menu.clear(); // ne legyen clear ha 2 frag latszik --> find
+								// titles
 			}
 			inflater.inflate(R.menu.menu_event_details, menu);
 			menuCalendarOne = menu.findItem(R.id.menuCalendarOne);
 		}
-		if(event != null ) {
-			if(event.isRankable()) {
+		if (event != null) {
+			if (event.isRankable()) {
 				MenuItem menuRating = menu.findItem(R.id.menuRating);
 				menuRating.setVisible(true);
 			}
-			if(event.isEditable()) {
+			if (event.isEditable()) {
 				MenuItem menuSubsrcibers = menu.findItem(R.id.menuSubscribers);
 				menuSubsrcibers.setVisible(true);
 			}
-		}
-		else {
+		} else {
 			menuCalendarOne.setVisible(false);
 		}
 		super.onCreateOptionsMenu(menu, inflater);
 	}
-	
+
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-		    case android.R.id.home:
-		    	activity.onBackPressed();
-		        return super.onOptionsItemSelected(item);
-		    case R.id.menuRating:
-		    	if(Toaster.isOnline(activity)) {
-			    	Intent intent = new Intent(activity, ActivityRatings_.class);
-			    	intent.putExtra("event", event);
-			    	startActivity(intent);
-		    	}
-		    	return super.onOptionsItemSelected(item);
-		    case R.id.menuSubscribers:
-		    	if(Toaster.isOnlineAndLoggedIn(activity)) {
-			    	bg.getSubscribers(event.getEventId(), this);
-		    	}
-		    	return super.onOptionsItemSelected(item);
-		    case R.id.menuCalendarOne:
-		    	try { // TODO majd kivenni
-		    	if (Toaster.isSDKVersionOk(activity)) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			activity.onBackPressed();
+			return super.onOptionsItemSelected(item);
+		case R.id.menuRating:
+			if (Toaster.isOnline(activity)) {
+				Intent intent = new Intent(activity, ActivityRatings_.class);
+				intent.putExtra("event", event);
+				startActivity(intent);
+			}
+			return super.onOptionsItemSelected(item);
+		case R.id.menuSubscribers:
+			if (Toaster.isOnlineAndLoggedIn(activity)) {
+				bg.getSubscribers(event.getEventId(), this);
+			}
+			return super.onOptionsItemSelected(item);
+		case R.id.menuCalendarOne:
+			try { // TODO majd kivenni
+				if (Toaster.isSDKVersionOk(activity)) {
 					StringBuilder locations = new StringBuilder();
-					for(String s : event.getLocation()) {
+					for (String s : event.getLocation()) {
 						locations.append(s);
 						locations.append(", ");
 					}
-					locations.delete(locations.length() - 2, locations.length());	//TODO egyszer kifagyott
-					Intent calIntent = new Intent(Intent.ACTION_INSERT); 
-					calIntent.setType("vnd.android.cursor.item/event");    
-					calIntent.putExtra(Events.TITLE, event.getTitle()); 
-					calIntent.putExtra(Events.EVENT_LOCATION, locations.toString()); 
-					calIntent.putExtra(Events.DESCRIPTION, event.getDescription()); 
-//					calIntent.putExtra(Intent.EXTRA_EMAIL, providers.toString().toLowerCase(Locale.getDefault()).replace(" ", ".") + "@inf.unideb.hu");
-					calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, 
-					     event.getEventStart().getTimeInMillis()); 
-					calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, 
-					     event.getEventEnd().getTimeInMillis()); 
+					locations.delete(locations.length() - 2, locations.length()); // TODO
+																					// egyszer
+																					// kifagyott
+					Intent calIntent = new Intent(Intent.ACTION_INSERT);
+					calIntent.setType("vnd.android.cursor.item/event");
+					calIntent.putExtra(Events.TITLE, event.getTitle());
+					calIntent.putExtra(Events.EVENT_LOCATION, locations.toString());
+					calIntent.putExtra(Events.DESCRIPTION, event.getDescription());
+					// calIntent.putExtra(Intent.EXTRA_EMAIL,
+					// providers.toString().toLowerCase(Locale.getDefault()).replace(" ",
+					// ".") + "@inf.unideb.hu");
+					calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, event.getEventStart().getTimeInMillis());
+					calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, event.getEventEnd().getTimeInMillis());
 					TimeZone timeZone = TimeZone.getDefault();
-			        calIntent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, timeZone.getID());
+					calIntent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, timeZone.getID());
 
-			        // default calendar
-			        calIntent.putExtra(CalendarContract.Events.CALENDAR_ID, 1);
+					// default calendar
+					calIntent.putExtra(CalendarContract.Events.CALENDAR_ID, 1);
 					calIntent.setData(CalendarContract.Events.CONTENT_URI);
 					startActivity(calIntent);
 				}
-		    	} catch(Exception e) {
-		    		Toaster.otherException(activity);
-		    	}
-		    	return super.onOptionsItemSelected(item);
-	    }
-	    return super.onOptionsItemSelected(item);
+			} catch (Exception e) {
+				Toaster.otherException(activity);
+			}
+			return super.onOptionsItemSelected(item);
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@UiThread
 	public void showSubscribersDialog(List<String> result) {
 		OrientationLocker.lockScreenOrientation(activity);
-		if(result.size() != 0) {
+		if (result.size() != 0) {
 			StringBuilder sBuilder = new StringBuilder();
 			int size = result.size();
-			for(int i = 0; i < size; ++i) {
+			for (int i = 0; i < size; ++i) {
 				sBuilder.append(result.get(i));
-				if(i != size - 1) {
+				if (i != size - 1) {
 					sBuilder.append("\n");
 				}
 			}
@@ -301,21 +304,24 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 
 	@UiThread
 	public void afterMark(boolean b) {
-		if(b) {
-			if(!SystemFunctions.isLargeLandscape(getActivity())) {
+		if (b) {
+			if (!SystemFunctions.isLargeLandscape(getActivity())) {
 				activity.onBackPressed();
-			}
-			else {
-				// TODO átirni a btnsubscribe nevét, kivenni forgatáskor ezt a fragmentet, welcome bol ki-be => egy várjon fent marad
-				fragLargeTitles.getEvents();
-				if(btnSubscribe.getText().equals(subscribe)) {
-					btnSubscribe.setText(unsubscribe);
-				}
-				else {
-					btnSubscribe.setText(subscribe);
+			} else {
+				// TODO átirni a btnsubscribe nevét, kivenni forgatáskor ezt a
+				// fragmentet, welcome bol ki-be => egy várjon fent marad
+				if (ActivityMain.fragment instanceof FragmentWelcome) {
+					fragLargeTitles.getEvents();
+					if (btnSubscribe.getText().equals(subscribe)) {
+						btnSubscribe.setText(unsubscribe);
+					} else {
+						btnSubscribe.setText(subscribe);
+					}
+				} else {
+					activity.onBackPressed();
 				}
 			}
 		}
 	}
-	
+
 }

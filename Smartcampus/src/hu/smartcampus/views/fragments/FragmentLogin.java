@@ -19,11 +19,10 @@ import android.support.v4.app.Fragment;
 import android.widget.EditText;
 
 @EFragment(R.layout.fragment_login)
-public class FragmentLogin extends Fragment
-{
-	
+public class FragmentLogin extends Fragment {
+
 	private CustomActionBarActivity activity;
-	
+
 	@ViewById
 	EditText txtEmail;
 	@ViewById
@@ -32,45 +31,42 @@ public class FragmentLogin extends Fragment
 	String loginTitle;
 	@Bean
 	BackgroundOperations bg;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
 	}
-	
+
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		activity = (CustomActionBarActivity) getActivity();
 		activity.getSupportActionBar().setTitle(loginTitle);
 	}
-	
+
 	@Click(R.id.btnLogin)
 	void queryBtnClicked() {
 		String username = txtEmail.getText().toString();
 		String password = txtPassword.getText().toString();
-		if(!username.equals("") && !password.equals("")) {
-			if (Toaster.isOnline(getActivity()))
-			{
+		if (!username.equals("") && !password.equals("")) {
+			if (Toaster.isOnline(getActivity())) {
 				bg.openSession(username, password, this);
 			}
-		}
-		else {
+		} else {
 			Toaster.setFields(getActivity());
 		}
 	}
-	
+
 	@UiThread
 	public void afterLogin(boolean success) {
 		ActivityMain a = (ActivityMain) activity;
-		if(success) {
+		if (success) {
 			a.loginOrPersonal();
 			a.onBackPressed();
-		}
-		else {
+		} else {
 			Toaster.loginError(a);
 		}
 	}
-	
+
 }

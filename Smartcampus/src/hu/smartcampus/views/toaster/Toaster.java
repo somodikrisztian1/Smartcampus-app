@@ -14,46 +14,42 @@ public class Toaster {
 	public static boolean isOnlineAndLoggedIn(Context context) {
 		boolean a;
 		boolean b;
-		if(!SystemFunctions.isOnline(context)) {
+		if (!SystemFunctions.isOnline(context)) {
 			a = false;
-		}
-		else {
+		} else {
 			a = true;
 		}
-		if(!ApplicationFunctions.getInstance().getUserFunctions().getLoginSatus()) {
+		if (!ApplicationFunctions.getInstance().getUserFunctions().getLoginSatus()) {
 			b = false;
-		}
-		else {
+		} else {
 			b = true;
 		}
-		if(a) {
-			if(!b) {
+		if (a) {
+			if (!b) {
 				Toast.makeText(context, R.string.plsLogin, Toast.LENGTH_LONG).show();
 			}
-		}
-		else {
-			if(b) {
+		} else {
+			if (b) {
 				Toast.makeText(context, R.string.plsNet, Toast.LENGTH_LONG).show();
-			}
-			else {
+			} else {
 				Toast.makeText(context, R.string.plsNetAndLogin, Toast.LENGTH_LONG).show();
 			}
 		}
 		return a && b;
 	}
-	
+
 	public static boolean isOnline(Context context) {
 		boolean b = SystemFunctions.isOnline(context);
-		if(!b) {
+		if (!b) {
 			Toast.makeText(context, R.string.functionNet, Toast.LENGTH_LONG).show();
 		}
 		return b;
 	}
-	
+
 	public static void timeout(Context context) {
 		Toast.makeText(context, R.string.lowNet, Toast.LENGTH_LONG).show();
 	}
-	
+
 	public static void otherException(Context context) {
 		Toast.makeText(context, R.string.error, Toast.LENGTH_LONG).show();
 	}
@@ -63,7 +59,7 @@ public class Toaster {
 	}
 
 	public static void setFields(FragmentActivity activity) {
-		Toast.makeText(activity, R.string.fillFields, Toast.LENGTH_LONG).show();		
+		Toast.makeText(activity, R.string.fillFields, Toast.LENGTH_LONG).show();
 	}
 
 	public static void loginError(ActivityMain activity) {
@@ -72,7 +68,7 @@ public class Toaster {
 
 	public static boolean isSDKVersionOk(FragmentActivity activity) {
 		boolean b = Build.VERSION.SDK_INT >= 14;
-		if(!b) {
+		if (!b) {
 			Toast.makeText(activity, R.string.ics, Toast.LENGTH_LONG).show();
 		}
 		return b;
@@ -93,5 +89,5 @@ public class Toaster {
 	public static void noItemsForCalendarInsert(FragmentActivity activity) {
 		Toast.makeText(activity, R.string.noItemsForCalendar, Toast.LENGTH_LONG).show();
 	}
-	
+
 }

@@ -19,10 +19,10 @@ import android.support.v7.app.ActionBarActivity;
 public class CustomActionBarActivity extends ActionBarActivity {
 
 	private ProgressDialog progressDialog;
-	
+
 	@StringRes
 	protected String pleaseWait;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,44 +31,41 @@ public class CustomActionBarActivity extends ActionBarActivity {
 		supportActionBar.setDisplayHomeAsUpEnabled(true);
 		supportActionBar.setHomeButtonEnabled(true);
 	}
-	
+
 	@UiThread
 	public void showDialogAndLock() {
 		OrientationLocker.lockScreenOrientation(this);
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setMessage(pleaseWait);
 		progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
+		progressDialog.setCanceledOnTouchOutside(false);
 		progressDialog.show();
 	}
-	
+
 	@UiThread
 	public void cancelDialogAndUnlock() {
 		progressDialog.dismiss();
 		OrientationLocker.unlockScreenOrientation(this);
 	}
-	
+
 	public void handleError(Exception e) {
 		e.printStackTrace();
-		if(e instanceof SocketTimeoutException) {
+		if (e instanceof SocketTimeoutException) {
 			showErrorToast(true);
-		}
-		else if(e instanceof UnknownHostException) {
+		} else if (e instanceof UnknownHostException) {
 			showErrorToast(true);
-		}
-		else {
+		} else {
 			showErrorToast(false);
 		}
 	}
-	
+
 	@UiThread
-	public void showErrorToast(boolean b){
-		if(b) {
+	public void showErrorToast(boolean b) {
+		if (b) {
 			Toaster.timeout(this);
-		}
-		else {
+		} else {
 			Toaster.otherException(this);
 		}
 	}
-	
+
 }

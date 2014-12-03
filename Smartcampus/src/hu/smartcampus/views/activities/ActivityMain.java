@@ -62,31 +62,26 @@ public class ActivityMain extends CustomActionBarActivity {
 		initDrawer();
 		supportFragmentManager = getSupportFragmentManager();
 		LayoutInflater inflater = getLayoutInflater();
-		menuContentFrame = (ViewGroup) drawerLayout
-				.findViewById(R.id.menuContentFrame);
-		menuContentFrame.addView(inflater.inflate(R.layout.menu_drawer_layout,
-				null));
-		ListView menuListView = (ListView) menuContentFrame
-				.findViewById(R.id.menuListview);
+		menuContentFrame = (ViewGroup) drawerLayout.findViewById(R.id.menuContentFrame);
+		menuContentFrame.addView(inflater.inflate(R.layout.menu_drawer_layout, null));
+		ListView menuListView = (ListView) menuContentFrame.findViewById(R.id.menuListview);
 		if (menuItems == null) {
 			menuItems = new ArrayList<MainMenuItem>();
-			MainMenuItem top = new MainMenuItem(R.string.notLogged,
-					FragmentLogin_.class, R.drawable.user);
+			MainMenuItem top = new MainMenuItem(R.string.notLogged, FragmentLogin_.class, R.drawable.user);
 			top.displayName = "";
 			menuItems.add(top);
-			menuItems.add(new MainMenuItem(R.string.titleEvents,
-					FragmentWelcome_.class, R.drawable.binocular));
-			menuItems.add(new MainMenuItem(R.string.nearby,
-					FragmentNearby_.class, R.drawable.radar));
+			menuItems.add(new MainMenuItem(R.string.titleEvents, FragmentWelcome_.class, R.drawable.binocular));
+			menuItems.add(new MainMenuItem(R.string.nearby, FragmentNearby_.class, R.drawable.radar));
 		}
-		adapter = new MenuArrayAdapter(getApplicationContext(),
-				R.layout.menu_listitem_layout, menuItems, this);
+		adapter = new MenuArrayAdapter(getApplicationContext(), R.layout.menu_listitem_layout, menuItems, this);
 		menuListView.setAdapter(adapter);
 		menuListView.setOnItemClickListener(adapter);
 
 		// először indul az app
 		if (savedInstanceState == null) {
-			bg.getSessionInfoAtStart(this);
+			if (SystemFunctions.isOnline(this)) {
+				bg.getSessionInfoAtStart(this);
+			}
 			initFragment();
 		}
 	}
@@ -109,8 +104,7 @@ public class ActivityMain extends CustomActionBarActivity {
 			e.printStackTrace();
 			return;
 		}
-		FragmentTransaction transaction = supportFragmentManager
-				.beginTransaction();
+		FragmentTransaction transaction = supportFragmentManager.beginTransaction();
 		transaction.add(R.id.mainContentFrame, fragment);
 		transaction.commit();
 	}
@@ -135,8 +129,9 @@ public class ActivityMain extends CustomActionBarActivity {
 
 	@UiThread
 	public void loginOrPersonal() {
-		if (!ApplicationFunctions.getInstance().getUserFunctions()
-				.getLoginSatus()) // Ha nincs bejelentkezve
+		if (!ApplicationFunctions.getInstance().getUserFunctions().getLoginSatus()) // Ha
+																					// nincs
+																					// bejelentkezve
 		{
 			showLogin();
 		} else {
@@ -145,20 +140,13 @@ public class ActivityMain extends CustomActionBarActivity {
 	}
 
 	private void showPersonal() {
-		if (SystemFunctions.isOnline(getApplicationContext())
-				&& ApplicationFunctions.getInstance().getUserFunctions()
-						.getLoginSatus()) {
-			if (!(menuItems.get(0).fragmentClass
-					.equals(FragmentPersonalData_.class))) {
+		if (SystemFunctions.isOnline(getApplicationContext()) && ApplicationFunctions.getInstance().getUserFunctions().getLoginSatus()) {
+			if (!(menuItems.get(0).fragmentClass.equals(FragmentPersonalData_.class))) {
 				menuItems.remove(0);
-				top = new MainMenuItem(R.string.logged,
-						FragmentPersonalData_.class, R.drawable.user);
-				Bitmap profilePic = ApplicationFunctions.getInstance()
-						.getUserFunctions().getLoggedInUser()
-						.getProfilePicture();
+				top = new MainMenuItem(R.string.logged, FragmentPersonalData_.class, R.drawable.user);
+				Bitmap profilePic = ApplicationFunctions.getInstance().getUserFunctions().getLoggedInUser().getProfilePicture();
 				if (profilePic != null) {
-					top.profilePicture = new BitmapDrawable(getResources(),
-							profilePic);
+					top.profilePicture = new BitmapDrawable(getResources(), profilePic);
 				}
 				top.displayName = topMenuName;
 				menuItems.add(0, top);
@@ -170,8 +158,7 @@ public class ActivityMain extends CustomActionBarActivity {
 	private void showLogin() {
 		if (!(menuItems.get(0).fragmentClass.equals(FragmentLogin_.class))) {
 			menuItems.remove(0);
-			MainMenuItem top = new MainMenuItem(R.string.notLogged,
-					FragmentLogin_.class, R.drawable.user);
+			MainMenuItem top = new MainMenuItem(R.string.notLogged, FragmentLogin_.class, R.drawable.user);
 			top.displayName = "";
 			menuItems.add(0, top);
 			adapter.notifyDataSetChanged();
@@ -202,28 +189,26 @@ public class ActivityMain extends CustomActionBarActivity {
 
 		Fragment fragNormalPD = getSupportFragmentManager().findFragmentById(R.id.fragNormalPD);
 		Fragment fragNormalNearby = getSupportFragmentManager().findFragmentById(R.id.fragNormalNearby);
-		if(fragNormalPD != null || fragNormalNearby != null) {
-		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		if(fragNormalPD != null) {
-			transaction.remove(fragNormalPD);
+		if (fragNormalPD != null || fragNormalNearby != null) {
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			if (fragNormalPD != null) {
+				transaction.remove(fragNormalPD);
+			}
+			if (fragNormalNearby != null) {
+				transaction.remove(fragNormalNearby);
+			}
+			transaction.commit();
 		}
-		if(fragNormalNearby != null) {
-			transaction.remove(fragNormalNearby);
-		}
-		transaction.commit();
-		}
-		
+
 		try {
 			fragment = page.fragmentClass.newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}
-		FragmentTransaction transaction = supportFragmentManager
-				.beginTransaction();
+		FragmentTransaction transaction = supportFragmentManager.beginTransaction();
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		transaction.replace(R.id.mainContentFrame, fragment, fragment
-				.getClass().getSimpleName());
+		transaction.replace(R.id.mainContentFrame, fragment, fragment.getClass().getSimpleName());
 		transaction.commit();
 		activePage = page;
 	}
@@ -235,13 +220,18 @@ public class ActivityMain extends CustomActionBarActivity {
 																		// lennie
 																		// a
 																		// gyökér
-		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-				GravityCompat.START); // ha nincs árnyék, nem nagy gond
+		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START); // ha
+																						// nincs
+																						// árnyék,
+																						// nem
+																						// nagy
+																						// gond
 
 		// ez valósítja meg a navigation drawer ki-be csúsztatását az appikonnal
-		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
-				R.drawable.ic_drawer, R.string.openDrawer, // teljesen mindegy
-															// milyen string
+		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.openDrawer, // teljesen
+																												// mindegy
+																												// milyen
+																												// string
 				R.string.closeDrawer);
 		drawerLayout.setDrawerListener(drawerToggle);
 	}

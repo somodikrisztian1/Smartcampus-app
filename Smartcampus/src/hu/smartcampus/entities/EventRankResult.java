@@ -6,15 +6,14 @@ import android.os.Parcelable;
 public class EventRankResult implements Parcelable {
 
 	private long rankId;
-	private String title;  
+	private String title;
 	private long count;
 	private Double rankValue;
-	
+
 	public EventRankResult() {
 	}
 
-	public EventRankResult(long rankId, String title, long count,
-			Double rankValue) {
+	public EventRankResult(long rankId, String title, long count, Double rankValue) {
 		super();
 		this.rankId = rankId;
 		this.title = title;
@@ -70,17 +69,16 @@ public class EventRankResult implements Parcelable {
 		public EventRankResult[] newArray(int size) {
 			return new EventRankResult[size];
 		}
-		
+
 	};
-	
+
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeLong(rankId);
 		dest.writeLong(count);
-		if(count > 0) {		// ha a count 0 akkor nem jön vissza rankValue mező
+		if (count > 0) { // ha a count 0 akkor nem jön vissza rankValue mező
 			dest.writeDouble(rankValue);
-		}
-		else {
+		} else {
 			dest.writeDouble(0.0);
 		}
 		dest.writeString(title);
@@ -92,5 +90,5 @@ public class EventRankResult implements Parcelable {
 		rankValue = in.readDouble();
 		title = in.readString();
 	}
-	
+
 }
