@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragWelcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <fragment
+        android:id="@+id/fragNormalWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="hu.smartcampus.views.fragments.FragmentTitles_" />
+
+</FrameLayout>

@@ -1,0 +1,153 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/deik"
+    android:padding="@dimen/paddingDefault" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textDateCategory"
+            style="@style/MyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/welcomeMarginBottom"
+            android:gravity="center"
+            android:text="@string/dateFilter"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/textDateFrom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/welcomeMarginLeft2"
+                android:layout_marginRight="@dimen/welcomeMarginRight3"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="@string/hintDateFrom"
+                android:textSize="@dimen/textNormalSize"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/textDateTo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/welcomeMarginLeft3"
+                android:layout_marginRight="@dimen/welcomeMarginRight2"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="@string/hintDateTo"
+                android:textSize="@dimen/textNormalSize"
+                tools:ignore="TextFields" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textTimeCategory"
+            style="@style/MyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/welcomeMarginBottom"
+            android:layout_marginLeft="@dimen/welcomeMarginLeft3"
+            android:layout_marginRight="@dimen/welcomeMarginRight3"
+            android:layout_marginTop="@dimen/welcomeMarginTop3"
+            android:gravity="center"
+            android:text="@string/timeFilter"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/textTimeFrom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/welcomeMarginLeft1"
+                android:layout_marginRight="@dimen/welcomeMarginRight3"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="@string/hintDateFrom"
+                android:textSize="@dimen/textNormalSize" />
+
+            <EditText
+                android:id="@+id/textTimeTo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/welcomeMarginLeft3"
+                android:layout_marginRight="@dimen/welcomeMarginRight1"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edges"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="@string/hintDateTo"
+                android:textSize="@dimen/textNormalSize" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/autoCategories"
+                style="@style/CustomAutoCompleteTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/welcomeMarginTop1"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:hint="@string/hintCategory"
+                android:inputType="textNoSuggestions"
+                android:visibility="gone" />
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/autoLocations"
+                style="@style/CustomAutoCompleteTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/welcomeMarginTop1"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/hintLocation"
+                android:inputType="textNoSuggestions"
+                android:visibility="gone" />
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/autoProviders"
+                style="@style/CustomAutoCompleteTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/welcomeMarginTop1"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:hint="@string/hintProvider"
+                android:inputType="textNoSuggestions"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnQuery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/welcomeMarginTop2"
+            android:text="@string/query"
+            android:textSize="@dimen/textBigSize" />
+    </LinearLayout>
+
+</ScrollView>

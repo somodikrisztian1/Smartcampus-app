@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="paddingDefault">5dp</dimen>
+    <dimen name="textNormalSize">20sp</dimen>
+    <dimen name="textBigSize">22sp</dimen>
+    <dimen name="textEventRowSize">23sp</dimen>
+    <dimen name="widthDrawer">250dp</dimen>
+    <dimen name="paddingEventRow">10dp</dimen>
+
+    <!-- styles.xml -->
+    <dimen name="textSize">18sp</dimen>
+    <item name="shadowRadius" format="float" type="dimen">1.3</item>
+    <item name="shadowDx" format="float" type="dimen">1.5</item>
+    <item name="shadowDy" format="float" type="dimen">1.5</item>
+
+    <!-- FragmentDetails -->
+    <dimen name="detailsMarginTop1">40dp</dimen>
+    <dimen name="detailsMarginTop2">35dp</dimen>
+    <dimen name="detailsMarginTop3">30dp</dimen>
+    <dimen name="detailsMarginTop4">25dp</dimen>
+    <dimen name="detailsMarginLeft">10dp</dimen>
+
+    <!-- FragmentWelcome -->
+    <dimen name="welcomeMarginBottom1">30dp</dimen>
+    <dimen name="welcomeMarginBottom2">15dp</dimen>
+    <dimen name="welcomeMarginBottom3">10dp</dimen>
+    <dimen name="welcomeMarginRight1">180dp</dimen>
+    <dimen name="welcomeMarginRight2">120dp</dimen>
+    <dimen name="welcomeMarginRight3">60dp</dimen>
+    <dimen name="welcomeMarginRight4">34dp</dimen>
+    <dimen name="welcomeMarginTop1">30dp</dimen>
+    <dimen name="welcomeMarginTop2">20dp</dimen>
+
+    <!-- FragmentLogin -->
+    <dimen name="loginMarginBottom1">15dp</dimen>
+    <dimen name="loginMarginBottom2">10dp</dimen>
+
+    <!-- FragmentRatings -->
+    <item name="textBigSizeR" format="float" type="dimen">22.0</item>
+    <item name="textNormalSizeR" format="float" type="dimen">20.0</item>
+    <item name="radioTopMargin" format="integer" type="dimen">5</item>
+    <item name="radioBottomMargin" format="integer" type="dimen">10</item>
+    <item name="plusDrawablePadding" format="integer" type="dimen">10</item>
+    <item name="plusBottomMargin" format="integer" type="dimen">20</item>
+    
+    <!-- MyTextView -->
+    <dimen name="myTextViewPadding">10dp</dimen>
+   
+    <item name="profilePicThumbnailSize" format="integer" type="dimen">15</item>
+
+</resources>

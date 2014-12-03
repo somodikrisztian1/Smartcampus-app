@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="drawerWidth">350dp</dimen>
+
+    <!-- FragmentDetails -->
+    <dimen name="detailsMarginTop1">20dp</dimen>
+    <dimen name="detailsMarginTop2">10dp</dimen>
+    <dimen name="detailsMarginTop3">30dp</dimen>
+    
+    <!-- FragmentWelcome -->
+    <dimen name="welcomeMarginTop1">20dp</dimen>
+    <dimen name="welcomeMarginTop2">13dp</dimen>
+    <dimen name="welcomeMarginTop3">10dp</dimen>
+    <dimen name="welcomeMarginBottom">3dp</dimen>
+    <dimen name="welcomeMarginLeft1">120dp</dimen>
+    <dimen name="welcomeMarginLeft2">60dp</dimen>
+    <dimen name="welcomeMarginLeft3">10dp</dimen>
+    <dimen name="welcomeMarginRight1">120dp</dimen>
+    <dimen name="welcomeMarginRight2">60dp</dimen>
+    <dimen name="welcomeMarginRight3">10dp</dimen>
+    
+</resources>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/paddingDefault" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/categories"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginTop="@dimen/detailsMarginTop1"
+            android:text="@string/categories"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/editCategories"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/categories"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="@dimen/detailsMarginLeft"
+            android:layout_marginTop="@dimen/detailsMarginTop1"
+            android:layout_toRightOf="@id/categories"
+            android:textSize="@dimen/textNormalSize" />
+
+        <TextView
+            android:id="@+id/eventStartTime"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/categories"
+            android:layout_below="@id/editCategories"
+            android:layout_marginTop="@dimen/detailsMarginTop2"
+            android:text="@string/eventStart"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/editStartTime"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/eventStartTime"
+            android:layout_alignLeft="@id/editCategories"
+            android:layout_below="@id/editCategories"
+            android:layout_marginTop="@dimen/detailsMarginTop1"
+            android:layout_toRightOf="@id/eventStartTime"
+            android:textSize="@dimen/textNormalSize" />
+
+        <TextView
+            android:id="@+id/eventEndTime"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/eventStartTime"
+            android:layout_below="@id/editStartTime"
+            android:layout_marginTop="@dimen/detailsMarginTop4"
+            android:text="@string/eventEnd"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/editEndTime"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/eventEndTime"
+            android:layout_alignLeft="@id/editCategories"
+            android:layout_below="@id/editStartTime"
+            android:layout_marginTop="@dimen/detailsMarginTop4"
+            android:layout_toRightOf="@id/eventEndTime"
+            android:textSize="@dimen/textNormalSize" />
+
+        <TextView
+            android:id="@+id/locations"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/eventEndTime"
+            android:layout_below="@id/editEndTime"
+            android:layout_marginTop="@dimen/detailsMarginTop2"
+            android:text="@string/locations"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/editLocations"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/locations"
+            android:layout_alignLeft="@id/editCategories"
+            android:layout_below="@id/editEndTime"
+            android:layout_marginTop="@dimen/detailsMarginTop2"
+            android:layout_toRightOf="@id/locations"
+            android:textSize="@dimen/textNormalSize" />
+
+        <TextView
+            android:id="@+id/providers"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/locations"
+            android:layout_below="@id/editLocations"
+            android:layout_marginTop="@dimen/detailsMarginTop3"
+            android:text="@string/providers"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/editProviders"
+            style="@style/MyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/providers"
+            android:layout_alignLeft="@id/editCategories"
+            android:layout_below="@id/editLocations"
+            android:layout_marginTop="@dimen/detailsMarginTop3"
+            android:layout_toRightOf="@id/providers"
+            android:textSize="@dimen/textNormalSize" />
+
+        <Button
+            android:id="@+id/btnSubscribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editProviders"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/detailsMarginTop1"
+            android:textSize="@dimen/textBigSize"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:my="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/menuRating"
+        android:icon="@drawable/rating"
+        android:title="@string/menuRating"
+        android:visible="false"
+        my:showAsAction="always"/>
+    <item
+        android:id="@+id/menuSubscribers"
+        android:icon="@drawable/subscribers"
+        android:title="@string/menuSubscribers"
+        android:visible="false"
+        my:showAsAction="always"/>
+    <item
+        android:id="@+id/menuCalendarOne"
+        android:icon="@drawable/ic_action_export"
+        android:title="@string/menuExport"
+        my:showAsAction="always"/>
+
+</menu>

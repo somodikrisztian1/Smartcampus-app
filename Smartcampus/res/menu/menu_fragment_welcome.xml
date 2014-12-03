@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:my="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/addFilter"
+        android:icon="@drawable/ic_action_new"
+        android:title="@string/menuFilter"
+        my:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/filterCategory"
+                android:title="@string/menuCategory"/>
+            <item
+                android:id="@+id/filterProvider"
+                android:title="@string/menuProvider"/>
+            <item
+                android:id="@+id/filterLocation"
+                android:title="@string/menuLocation"/>
+        </menu>
+    </item>
+
+</menu>

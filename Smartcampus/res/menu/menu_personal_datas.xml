@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:my="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/showAllInCalendar"
+        android:icon="@drawable/calendar"
+        android:title="@string/menuCalendar"
+        my:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/modifyProfilePicture"
+        android:title="@string/menuModPic"
+        my:showAsAction="never"/>
+    <item
+        android:id="@+id/about"
+        android:title="@string/menuAbout"
+        my:showAsAction="never"/>
+    <item
+        android:id="@+id/logout"
+        android:title="@string/menuLogout"
+        my:showAsAction="never"/>
+
+</menu>
