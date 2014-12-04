@@ -87,15 +87,6 @@ public class FragmentTitles extends ListFragment implements OnQueryTextListener,
 		}
 	}
 
-	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	// Bundle savedInstanceState) {
-	// View v = super.onCreateView(inflater, container, savedInstanceState);
-	// ViewGroup parent = (ViewGroup) inflater.inflate(R.layout.fragment_titles,
-	// container, false);
-	// parent.addView(v, 0);
-	// return parent;
-	// }
-
 	@SuppressWarnings("unchecked")
 	void getEvents() {
 		Bundle extras = context.getIntent().getExtras();
