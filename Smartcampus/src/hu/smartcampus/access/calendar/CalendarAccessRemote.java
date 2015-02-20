@@ -7,7 +7,6 @@ import hu.smartcampus.entities.FilterItem;
 import hu.smartcampus.entities.RankType;
 import hu.smartcampus.entities.RankValue;
 import hu.smartcampus.entities.User;
-import hu.unideb.inf.cipher.DES;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -273,7 +272,7 @@ public class CalendarAccessRemote {
 
 	public User openSession(String username, String password) throws Exception {
 		SoapObject request = client.newRequest("openSession");
-		request.addProperty("credential", DES.encriptStr(password));
+		request.addProperty("credential", password);
 		request.addProperty("principal", username);
 		Object result = client.call(request);
 		if (result == null || !(result instanceof SoapPrimitive)) {

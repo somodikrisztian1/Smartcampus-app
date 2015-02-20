@@ -99,19 +99,12 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 		super.onAttach(activity);
 		this.activity = (CustomActionBarActivity) activity;
 		event = activity.getIntent().getParcelableExtra("event");
-		// if(FragmentTitles.selectedEvent != null) {
-		// event = FragmentTitles.selectedEvent;
-		// }
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
-		// if(getId() == R.id.fragNormalPD || getId() == R.id.fragNormalNearby)
-		// {
-		// setRetainInstance(true);
-		// }
 	}
 
 	@AfterViews
@@ -191,19 +184,14 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		this.activity.getSupportActionBar().setTitle(detailsTitle); // TODO ez
-																	// hamarabb
-																	// lefut
-																	// mint az
-																	// after
+		this.activity.getSupportActionBar().setTitle(detailsTitle);
 	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		if (menu != null) {
 			if (fragLargeTitles == null) {
-				menu.clear(); // ne legyen clear ha 2 frag latszik --> find
-								// titles
+				menu.clear();
 			}
 			inflater.inflate(R.menu.menu_event_details, menu);
 			menuCalendarOne = menu.findItem(R.id.menuCalendarOne);
@@ -243,24 +231,19 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 			}
 			return super.onOptionsItemSelected(item);
 		case R.id.menuCalendarOne:
-			try { // TODO majd kivenni
+			try {
 				if (Toaster.isSDKVersionOk(activity)) {
 					StringBuilder locations = new StringBuilder();
 					for (String s : event.getLocation()) {
 						locations.append(s);
 						locations.append(", ");
 					}
-					locations.delete(locations.length() - 2, locations.length()); // TODO
-																					// egyszer
-																					// kifagyott
+					locations.delete(locations.length() - 2, locations.length()); 
 					Intent calIntent = new Intent(Intent.ACTION_INSERT);
 					calIntent.setType("vnd.android.cursor.item/event");
 					calIntent.putExtra(Events.TITLE, event.getTitle());
 					calIntent.putExtra(Events.EVENT_LOCATION, locations.toString());
 					calIntent.putExtra(Events.DESCRIPTION, event.getDescription());
-					// calIntent.putExtra(Intent.EXTRA_EMAIL,
-					// providers.toString().toLowerCase(Locale.getDefault()).replace(" ",
-					// ".") + "@inf.unideb.hu");
 					calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, event.getEventStart().getTimeInMillis());
 					calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, event.getEventEnd().getTimeInMillis());
 					TimeZone timeZone = TimeZone.getDefault();
@@ -308,8 +291,6 @@ public class FragmentDetails extends Fragment implements OnClickListener {
 			if (!SystemFunctions.isLargeLandscape(getActivity())) {
 				activity.onBackPressed();
 			} else {
-				// TODO átirni a btnsubscribe nevét, kivenni forgatáskor ezt a
-				// fragmentet, welcome bol ki-be => egy várjon fent marad
 				if (ActivityMain.fragment instanceof FragmentWelcome) {
 					fragLargeTitles.getEvents();
 					if (btnSubscribe.getText().equals(subscribe)) {

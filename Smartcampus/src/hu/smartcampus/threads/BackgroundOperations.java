@@ -201,8 +201,9 @@ public class BackgroundOperations {
 	@Background
 	public void listFiltered(Calendar[] dates, HashMap<String, ArrayList<Long>> filters, Fragment fragment) {
 		CustomActionBarActivity activity = (CustomActionBarActivity) fragment.getActivity();
-		if (!OrientationLocker.isLocked())
+		if (!OrientationLocker.isLocked()) {
 			activity.showDialogAndLock();
+		}
 		List<Event> listFiltered = null;
 		boolean success = false;
 		try {
@@ -222,8 +223,9 @@ public class BackgroundOperations {
 				frag.updateAdapter(listFiltered);
 			}
 		}
-		if (OrientationLocker.isLocked())
+		if (OrientationLocker.isLocked()) {
 			activity.cancelDialogAndUnlock();
+		}
 	}
 
 	@Background

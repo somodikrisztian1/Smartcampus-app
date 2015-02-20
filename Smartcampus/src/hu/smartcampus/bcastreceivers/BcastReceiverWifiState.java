@@ -1,13 +1,9 @@
 package hu.smartcampus.bcastreceivers;
 
-import hu.smartcampus.threads.BackgroundOperations;
 import hu.smartcampus.views.fragments.FragmentNearby;
 import hu.smartcampus.views.toaster.Toaster;
 
 import java.util.List;
-
-import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.EReceiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,13 +12,9 @@ import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 
-@EReceiver
 public class BcastReceiverWifiState extends BroadcastReceiver {
 
 	private FragmentNearby fragment;
-
-	@Bean
-	BackgroundOperations bg;
 
 	public BcastReceiverWifiState() {
 		super();

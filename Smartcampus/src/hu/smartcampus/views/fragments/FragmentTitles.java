@@ -199,7 +199,7 @@ public class FragmentTitles extends ListFragment implements OnQueryTextListener,
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			getActivity().onBackPressed(); // TODO parentactivity sen
+			getActivity().onBackPressed();
 			return true;
 		}
 		return false;
@@ -217,21 +217,16 @@ public class FragmentTitles extends ListFragment implements OnQueryTextListener,
 		searchView.setOnQueryTextListener(this);
 		MenuItemCompat.setOnActionExpandListener(menuItem, this);
 		MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
-		if (query != null && !query.equals("")) { // TODO nemtom mér
-			// Log.d("lol", query == "" ? "nem null2" : "null2"); ilyenkor
-			// referenciat nez
-			String queryCopy = query; // értékmásolás még jókor
+		if (query != null && !query.equals("")) {
+			String queryCopy = query;
 			MenuItemCompat.expandActionView(menuItem);
 			searchView.setQuery(queryCopy, false);
-			// searchView.clearFocus();
 		}
 	}
 
 	@Override
 	public boolean onQueryTextChange(String text) {
-		query = text; // expandaction után ez lefut ugy hogy már a text = "",
-						// igy a query is azlesz (értékmásolás), ==
-						// értékvizsgálatot végez
+		query = text;
 		if (text.length() < 2) {
 			if (adapter != getListAdapter()) {
 				setListAdapter(adapter);
